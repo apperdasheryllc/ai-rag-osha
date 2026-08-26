@@ -2,6 +2,9 @@
 
 FastAPI service for OSHA PPE RAG with ChromaDB-backed retrieval.
 
+<img width="1071" height="510" alt="Screenshot 2026-08-26 at 2 57 01 PM" src="https://github.com/user-attachments/assets/96c77730-bfa0-499d-a90b-4347825e57f6" />
+
+
 ## Quick start
 
 Create an .env file and enter your API key.
