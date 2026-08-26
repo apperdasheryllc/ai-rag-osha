@@ -1,0 +1,9 @@
+# Xcode user-specific state
+xcuserdata/
+*.xcuserstate
+
+# Build products
+DerivedData/
+
+# Operating system files
+.DS_Store
