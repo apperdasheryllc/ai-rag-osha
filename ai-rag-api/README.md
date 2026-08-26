@@ -13,14 +13,17 @@ Create an .env file and enter your API key.
 cp .env.example .env
 ```
 
+Create a virtual environment and install the required dependencies.
+
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-python -m uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+```
 
-or 
+Run the app.
 
+```bash
 uvicorn app.main:app --host 0.0.0.0 --port 8000
 ```
 
