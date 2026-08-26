@@ -231,3 +231,146 @@ python test_rag.py
 **Output**:
 - For each result: Citation, regulation info, source URL, relevance distance
 - Full chunk text for context
+
+---
+
+### 11. Reload (reload_vectors.py)
+
+**Purpose**: Clear and rebuild the vector store when cleaning/chunking is modified.
+
+**Usage** (when re-processing is needed):
+```bash
+python reload_vectors.py
+```
+
+**Process**:
+1. Deletes the existing collection from ChromaDB
+2. Recreates the collection fresh
+3. Re-embeds and reloads all chunks
+4. Useful after fixing HTML cleaning or chunking logic
+
+**When to use**:
+- After modifying `cleaner3.py` or `chunker2.py`
+- If `diagnose.py` reveals chunk content issues
+- To reset embeddings for a fresh start
+
+---
+
+## Troubleshooting
+
+### Validation Issues
+
+If `validate.py` reports problems:
+
+1. **Empty chunks or low token counts**
+   - Run `diagnose.py` to inspect specific sections
+   - Check if HTML structure is being parsed correctly
+   - May indicate incomplete regulation pages or parsing failures
+
+2. **Duplicate sentences in sections**
+   - Run `check_dupes.py` to identify which sections
+   - Likely indicates OSHA HTML structure issue (duplicated content in page)
+   - Review raw HTML in `raw_html/` to confirm duplication
+
+### Content Quality Issues
+
+1. **Poor search results from `test_rag.py`**
+   - Check that chunks are being created correctly with `diagnose.py`
+   - Verify embeddings are fresh; re-run `reload_vectors.py` if needed
+   - Review chunking parameters in `chunker.py`
+
+2. **Text extraction looks wrong**
+   - Run `diagnose.py` on a known section (e.g., `1926.104`)
+   - If text doesn't match the website, review HTML in `raw_html/`
+   - May need to adjust CSS selectors in `cleaner.py`
+
+### Common Workflows
+
+**Full re-ingestion (after code changes)**:
+```bash
+python validate.py           # Check current state
+python check_dupes.py        # Verify no duplication issues
+python chunker.py           # Re-chunk if splitting changed
+python reload_vectors.py     # Rebuild vector store
+python test_rag.py          # Validate with test queries
+```
+
+**Incremental updates (add new regulations)**:
+1. Add new URLs to `url_list.py`
+2. Run `scraper.py`
+3. Run `cleaner.py`
+4. Run `reload_vectors.py` (requires full rebuild)
+
+---
+
+## Directory Structure
+
+```
+ai-rag-pipeline/
+├── README.md                    # This file
+├── requirements.txt             # Python dependencies
+├── paste_urls.py               # Extract URLs from HTML
+├── url_list.py                 # Curated list of regulation URLs
+├── scraper.py                  # Download and cache HTML
+├── cleaner.py                 # Extract and normalize text
+├── chunker.py                 # Split into semantic chunks
+├── validate.py                 # Check chunk quality
+├── check_dupes.py              # Detect duplicate sentences
+├── diagnose.py                 # Inspect specific chunks
+├── embed_and_load.py           # Generate embeddings & load DB
+├── test_rag.py                # Query the vector store
+├── reload_vectors.py           # Clear & rebuild vector store
+│
+├── raw_html/                   # Downloaded HTML pages
+│   └── 1926_1926_95.html, etc.
+├── metadata/                   # Scrape metadata (timestamps, hashes)
+│   └── 1926_1926_95.json, etc.
+├── clean_text/                 # Extracted and cleaned text
+│   └── 1926_1926_95.txt, etc.
+├── chunks/                     # Semantic chunks (JSONL format)
+│   └── 1926_1926_95.jsonl, etc.
+├── chroma_store/               # Vector database (persistent)
+│   └── [ChromaDB collections]
+└── logs/                        # Execution logs
+    └── scraper.log
+```
+
+---
+
+## Data Flow
+
+```
+URL List (url_list.py)
+         ↓
+    Scraper (scraper.py)
+    [raw_html/, metadata/]
+         ↓
+    Cleaner (cleaner.py)
+    [clean_text/]
+         ↓
+    Chunker (chunker.py)
+    [chunks/]
+         ↓
+    Validate (validate.py)
+    Deduplicate (check_dupes.py)
+         ↓
+    Embed & Load (embed_and_load.py)
+    [chroma_store/]
+         ↓
+    Test & Query (test_rag.py)
+         ↓
+    Reload Vectors (reload_vectors.py)
+    [chroma_store/]
+         ↓
+    Test & Query (test_rag.py)
+```
+
+---
+
+## Notes
+
+- All scripts use relative paths and expect to be run from the `ai-rag-pipeline/` directory
+- Token counting uses the GPT-3 tokenizer (`cl100k_base`) for consistency with LLM context windows
+- Embeddings use a lightweight local model (`all-MiniLM-L6-v2`) that runs without GPU
+- ChromaDB stores vectors persistently in `chroma_store/` — safe to query repeatedly
+- Scraper includes respectful delays (2.5 sec) between requests to avoid overloading OSHA servers
