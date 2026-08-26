@@ -2,6 +2,16 @@
 
 A demonstration Retrieval-Augmented Generation (RAG) pipeline for OSHA safety regulations. This example ai-rag-pipeline scrapes OSHA regulatory text from the web, processes it into chunks, generates embeddings, and provides semantic search capabilities.
 
+## Setup
+
+Create and activate a virtual environment, then install dependencies:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
 
 ## Pipeline Procedures
 
@@ -65,5 +75,28 @@ python scraper.py
 **Output directories**:
 - `raw_html/` – Raw HTML pages (one per regulation)
 - `metadata/` – JSON metadata files with fetch info and content hashes
+
+---
+
+### 4. Cleaning (cleaner.py)
+
+**Purpose**: Extract regulatory text from HTML and normalize formatting.
+
+**Usage**:
+```bash
+python cleaner.py
+```
+
+**Process**:
+1. Removes navigation, headers, footers, and other boilerplate
+2. Targets OSHA's Drupal structure for regulation body extraction
+3. Identifies sections marked with `@@SECTION@@` delimiter
+4. Preserves citations (e.g., "1926.104(d)") for each section
+5. Normalizes fractions (½ → 1/2, etc.)
+6. Handles both primary regulation sections and fallback heuristics
+
+**Output**:
+- `clean_text/` – Cleaned text files with sections separated by `@@SECTION@@`
+- Format: `[CITATION] <citation>\n[TEXT] <body_text>`
 
 ---
