@@ -46,3 +46,8 @@ dist/
 .idea/
 *.swp
 *.swo
+
+# Output Files
+metadata/
+raw_html/
+logs/
