@@ -187,3 +187,47 @@ python check_dupes.py
 - Helpful for debugging specific regulations
 
 ---
+
+### 9. Embed & Load (embed_and_load.py)
+
+**Purpose**: Generate embeddings and populate the vector database.
+
+**Usage**:
+```bash
+python embed_and_load.py
+```
+
+**Process**:
+1. Reads all chunks from JSONL files
+2. Uses `all-MiniLM-L6-v2` sentence transformer model (runs locally)
+3. Generates embeddings for each chunk
+4. Upserts chunks into ChromaDB in batches of 100
+5. Creates persistent vector store in `chroma_store/`
+
+**Output**:
+- `chroma_store/` – Persistent ChromaDB database
+- Console output shows loading progress
+- Success message with total chunk count
+
+**Note**: First run downloads the embedding model (~90MB) — takes 1-2 minutes on initial execution.
+
+---
+
+### 10. Testing (test_rag.py)
+
+**Purpose**: Query the vector store with semantic search to validate ingestion.
+
+**Usage**:
+```bash
+python test_rag.py
+```
+
+**Features**:
+- Query expansion: Paraphrases questions using a heuristic map
+- Returns top 5 results with distance scores
+- Displays citation, regulation label, source URL, and full text
+- Example query: "How long does a safety belt lanyard need to be?"
+
+**Output**:
+- For each result: Citation, regulation info, source URL, relevance distance
+- Full chunk text for context

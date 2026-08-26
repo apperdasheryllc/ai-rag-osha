@@ -53,3 +53,6 @@ raw_html/
 logs/
 clean_text/
 chunks/
+.cache/
+chroma_store/
+:memory:*

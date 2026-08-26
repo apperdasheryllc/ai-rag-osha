@@ -1,5 +1,9 @@
 # Core dependencies for the OSHA RAG ingestion pipeline
 beautifulsoup4>=4.12,<5.0
+chromadb>=0.5,<1.0
+langchain-text-splitters>=0.3,<1.0
 lxml>=5.2,<6.0
 requests>=2.32,<3.0
+sentence-transformers>=3.0,<4.0
+tiktoken>=0.8,<1.0
 tqdm>=4.66,<5.0
