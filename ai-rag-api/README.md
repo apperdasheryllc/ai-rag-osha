@@ -4,12 +4,21 @@ FastAPI service for OSHA PPE RAG with ChromaDB-backed retrieval.
 
 ## Quick start
 
+Create an .env file and enter your API key.
+
+```bash
+cp .env.example .env
+```
+
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-cp .env.example .env
 python -m uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+
+or 
+
+uvicorn app.main:app --host 0.0.0.0 --port 8000
 ```
 
 ## Configuration
