@@ -36,6 +36,9 @@ Set these values in `.env`:
 - Swagger UI: `http://localhost:8000/docs`
 - OpenAPI JSON: `http://localhost:8000/openapi.json`
 
+<img width="1282" height="769" alt="Screenshot 2026-08-26 at 6 38 31 PM" src="https://github.com/user-attachments/assets/7a147bf6-fd8f-483e-ace2-7bf71ecc0cb6" />
+
+
 ## Endpoints
 
 - `GET /v1/health`
