@@ -100,3 +100,30 @@ python cleaner.py
 - Format: `[CITATION] <citation>\n[TEXT] <body_text>`
 
 ---
+
+### 5. Chunking (chunker.py)
+
+**Purpose**: Split cleaned text into semantically coherent chunks for embedding.
+
+**Usage**:
+```bash
+python chunker.py
+```
+
+**Configuration**:
+- `MAX_TOKENS` – 400 (target chunk size)
+- `OVERLAP_TOKENS` – 0 (no overlap when splitting by section)
+- `MIN_TOKENS` – 15 (discard fragments smaller than this)
+
+**Process**:
+1. Reads cleaned text files section-by-section
+2. Groups sections into chunks respecting token limits
+3. For oversized sections, uses recursive character splitting with fallback
+4. Counts tokens using GPT-3 tokenizer (`cl100k_base`)
+5. Preserves citation information in each chunk
+
+**Output**:
+- `chunks/` – JSONL files, one line per chunk
+- Each chunk includes: `chunk_id`, `text`, `citation`, `label`, `source_url`, `chunk_index`, `token_count`
+
+---
