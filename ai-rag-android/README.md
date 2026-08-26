@@ -2,6 +2,10 @@
 
 Native Android client for the OSHA PPE RAG experience, built with Kotlin and Jetpack Compose.
 
+| Ask | Answer | Source |
+| -------- | -------- | -------- |
+| <img width="1080" height="2424" alt="Screenshot_20260826_183245" src="https://github.com/user-attachments/assets/07d97af7-66b1-4e67-ac36-06ac4308bc02" />  | <img width="1080" height="2424" alt="Screenshot_20260826_183301" src="https://github.com/user-attachments/assets/6fc0fd57-c891-4e02-bac1-ccfcb8103de2" />  | <img width="1080" height="2424" alt="Screenshot_20260826_192010" src="https://github.com/user-attachments/assets/4827d045-111a-4928-be47-d04158817ba7" />  |
+
 ## Scope
 
 - Presents OSHA PPE question-and-answer workflows to users.
