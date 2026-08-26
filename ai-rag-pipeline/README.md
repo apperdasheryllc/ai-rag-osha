@@ -250,9 +250,11 @@ python reload_vectors.py
 4. Useful after fixing HTML cleaning or chunking logic
 
 **When to use**:
-- After modifying `cleaner3.py` or `chunker2.py`
+- After modifying `cleaner.py` or `chunker.py`
 - If `diagnose.py` reveals chunk content issues
 - To reset embeddings for a fresh start
+
+<img width="841" height="349" alt="Screenshot 2026-08-26 at 6 59 42 PM" src="https://github.com/user-attachments/assets/c3f22e16-b9d8-440c-b38a-0cecc79f9969" />
 
 ---
 
