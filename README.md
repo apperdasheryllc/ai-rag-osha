@@ -1,9 +1,23 @@
 # AI RAG OSHA Demo - Apperdashery
 
-This repository showcases AI engineering skills and modern technologies used in enterprise software development:
-- **AI Engineering**: Anthropic, Retrieval Augmented Generation (RAG), ChromaDB, LiteLLM, Vector Databases
-- **Backend API**: Python, FastAPI
-- **Native Mobile Development**: iOS, Android
+## What it demonstrates
+- Agentic AI
+- Retrieval-Augmented Generation
+- Document ingestion
+- Vector search
+- LLM integration
+- Mobile AI integration
+- FastAPI
+
+## Business Use Cases
+
+This architecture can be adapted for field service, construction, healthcare, financial services, insurance, manufacturing, and other environments where employees need rapid access to organizational knowledge.
+
+
+
+https://github.com/user-attachments/assets/c4442a6a-e43d-419c-8f8a-f58dddf0c2e0
+
+
 
 ## ai-rag-pipeline
 A retrieval and indexing pipeline for OSHA safety regulations.
