@@ -19,6 +19,35 @@ https://github.com/user-attachments/assets/c4442a6a-e43d-419c-8f8a-f58dddf0c2e0
 
 
 
+## Architecture
+
+How a user's question flows through the system, end to end:
+
+```mermaid
+flowchart TD
+    iOS["📱 iOS App<br/>(Swift/SwiftUI)"]
+    AND["📱 Android App<br/>(Kotlin/Compose)"]
+    API["🖥️ ai-rag-api<br/>(FastAPI)"]
+    VDB[("🗄️ ChromaDB<br/>Vector Store")]
+    LLM["🤖 Claude<br/>(via LiteLLM)"]
+
+    iOS <-->|"1 ask →<br/>6 ← answer"| API
+    AND <-->|"1 ask →<br/>6 ← answer"| API
+    API <-->|"2 search →<br/>3 ← chunks"| VDB
+    API <-->|"4 question + context →<br/>5 ← grounded answer"| LLM
+
+    subgraph Pipeline["⚙️ ai-rag-pipeline — offline indexing"]
+        direction LR
+        SRC["OSHA Regulation Pages"] --> CHUNK["Scrape, Clean & Chunk"] --> EMBED["Embed<br/>(Sentence Transformers)"]
+    end
+    EMBED -.->|pre-indexes| VDB
+```
+
+1. The user asks a question in the iOS or Android app, which is sent to **ai-rag-api**.
+2. **ai-rag-api** embeds the question and searches **ChromaDB** for the most relevant OSHA regulation chunks (indexed ahead of time by **ai-rag-pipeline**). Retrieval happens entirely in the API — Claude never queries the vector store directly.
+3. The API builds a prompt from the question plus the retrieved chunks and sends it to **Claude** (via LiteLLM).
+4. Claude returns a grounded, cited answer as plain text, which the API relays back to the mobile app.
+
 ## ai-rag-pipeline
 A retrieval and indexing pipeline for OSHA safety regulations.
 It scrapes source pages, cleans and sections raw HTML, generates chunked JSONL records, embeds them with Sentence Transformers, and loads vectors into ChromaDB for downstream semantic retrieval.
