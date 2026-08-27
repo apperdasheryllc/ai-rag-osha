@@ -1,4 +1,5 @@
 # AI RAG OSHA Demo - Apperdashery
+*Artificial Intelligence · Retrieval-Augmented Generation · Occupational Safety and Health Administration*
 
 ## What it demonstrates
 - AI engineering
