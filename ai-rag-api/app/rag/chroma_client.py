@@ -1,15 +1,12 @@
 """Shared ChromaDB client and collection loader for RAG endpoints."""
 
 from functools import lru_cache
-import logging
 import os
 from typing import Any
 
 CHROMA_STORE_PATH = os.getenv("CHROMA_STORE_PATH", "../chroma_store")
 OSHA_COLLECTION_NAME = os.getenv("OSHA_COLLECTION_NAME", "osha_regulations")
 EMBED_MODEL = os.getenv("EMBED_MODEL", "all-MiniLM-L6-v2")
-
-logger = logging.getLogger(__name__)
 
 
 @lru_cache(maxsize=1)
@@ -37,15 +34,6 @@ def get_osha_collection() -> Any:
         name=OSHA_COLLECTION_NAME,
         embedding_function=embedding_function,
     )
-
-    # Temporary startup verification logs; remove after Chroma path/count is validated.
-    resolved_store_path = os.path.abspath(CHROMA_STORE_PATH)
-    logger.info("[CHROMA STARTUP] CHROMA_STORE_PATH=%s", resolved_store_path)
-    logger.info("[CHROMA STARTUP] OSHA_COLLECTION_NAME=%s", OSHA_COLLECTION_NAME)
-    try:
-        logger.info("[CHROMA STARTUP] chunk_count=%s", collection.count())
-    except Exception as error:
-        logger.warning("[CHROMA STARTUP] unable to count chunks: %s", error)
 
     return collection
 

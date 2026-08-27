@@ -1,6 +1,8 @@
 # AI RAG OSHA Demo - Apperdashery
 *Artificial Intelligence (AI) · Retrieval-Augmented Generation (RAG) · Occupational Safety and Health Administration (OSHA)*
 
+> **Demo only — not hardened for public deployment.** The API has no authentication or rate limiting, so it should only be run locally or behind your own access controls.
+
 ## What it demonstrates
 - AI engineering
 - Retrieval-Augmented Generation (RAG)
@@ -70,6 +72,8 @@ A native iOS app built with Swift and SwiftUI.
 This client is intended to provide a mobile interface for OSHA PPE question/answer flows backed by the ai-rag-api service.
 iOS docs: [ai-rag-app/README.md](ai-rag-app/README.md)
 
+*Points at `http://localhost:8000` by default — for demo purposes only, not hardened for public deployment.*
+
 <img width="350" alt="Simulator Screenshot - iPhone 17 - 2026-08-26 at 16 07 44" src="https://github.com/user-attachments/assets/0080e54a-1e7f-4683-8291-6680396cb297" />
 
 
@@ -77,6 +81,8 @@ iOS docs: [ai-rag-app/README.md](ai-rag-app/README.md)
 A native Android app built with Kotlin and Jetpack Compose.
 This client is intended to mirror the iOS experience and connect to the same FastAPI RAG backend for OSHA PPE guidance.
 Android docs: [ai-rag-android/README.md](ai-rag-android/README.md)
+
+*Points at `http://127.0.0.1:8000` by default — for demo purposes only, not hardened for public deployment.*
 
 <img width="350" alt="Screenshot_20260826_183900" src="https://github.com/user-attachments/assets/73507f57-c400-4b74-82f7-7b2636e80ac2" />
 
