@@ -2,6 +2,9 @@
 
 A demonstration Retrieval-Augmented Generation (RAG) pipeline for OSHA safety regulations. This example ai-rag-pipeline scrapes OSHA regulatory text from the web, processes it into chunks, generates embeddings, and provides semantic search capabilities.
 
+<img width="970" height="506" alt="Screenshot 2026-08-27 at 9 35 56 AM" src="https://github.com/user-attachments/assets/aa6f454e-3d10-4403-a9b8-f990b5623440" />
+
+
 ## Setup
 
 Create and activate a virtual environment, then install dependencies:
