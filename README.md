@@ -1,13 +1,13 @@
 # AI RAG OSHA Demo - Apperdashery
 
 ## What it demonstrates
-- Agentic AI
-- Retrieval-Augmented Generation
+- AI engineering
+- Retrieval-Augmented Generation (RAG)
 - Document ingestion
 - Vector search
 - LLM integration
 - Mobile AI integration
-- FastAPI
+- FastAPI web service
 
 ## Business Use Cases
 
@@ -69,7 +69,7 @@ A native iOS app built with Swift and SwiftUI.
 This client is intended to provide a mobile interface for OSHA PPE question/answer flows backed by the ai-rag-api service.
 iOS docs: [ai-rag-app/README.md](ai-rag-app/README.md)
 
-<img width="1206" height="2622" alt="Simulator Screenshot - iPhone 17 - 2026-08-26 at 16 07 44" src="https://github.com/user-attachments/assets/0080e54a-1e7f-4683-8291-6680396cb297" />
+<img width="350" alt="Simulator Screenshot - iPhone 17 - 2026-08-26 at 16 07 44" src="https://github.com/user-attachments/assets/0080e54a-1e7f-4683-8291-6680396cb297" />
 
 
 ## ai-rag-android
@@ -77,5 +77,5 @@ A native Android app built with Kotlin and Jetpack Compose.
 This client is intended to mirror the iOS experience and connect to the same FastAPI RAG backend for OSHA PPE guidance.
 Android docs: [ai-rag-android/README.md](ai-rag-android/README.md)
 
-<img width="1080" height="2424" alt="Screenshot_20260826_183900" src="https://github.com/user-attachments/assets/73507f57-c400-4b74-82f7-7b2636e80ac2" />
+<img width="350" alt="Screenshot_20260826_183900" src="https://github.com/user-attachments/assets/73507f57-c400-4b74-82f7-7b2636e80ac2" />
 
