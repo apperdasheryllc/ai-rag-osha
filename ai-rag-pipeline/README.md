@@ -18,9 +18,35 @@ pip install -r requirements.txt
 
 ## Pipeline Procedures
 
-### 1. Prepare URLs (paste_urls.py)
+### 1. Prepare URLs (fetch_urls.py / paste_urls.py)
 
-**Purpose**: Extract OSHA regulation links from an HTML list.
+**Purpose**: Extract OSHA regulation links from a subpart page.
+
+There are two ways to do this — `fetch_urls.py` automatically downloads the page for you, while `paste_urls.py` works from HTML you copy/paste by hand.
+
+#### fetch_urls.py (recommended)
+
+Fetches an OSHA subpart page directly and extracts its regulation links — no manual copy/paste required.
+
+**Usage**:
+```bash
+python fetch_urls.py [URL]
+```
+- `URL` is optional; a subpart page's URL, e.g. `https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926SubpartE`. If omitted, `DEFAULT_URL` in the script is used.
+
+**Behavior**:
+1. Downloads the page with `requests`
+2. Locates the `<article>` element containing the regulation list (falls back to scanning the whole page if it can't be found)
+3. Reuses `paste_urls.py`'s parsing/formatting so output is identical to the manual flow
+
+**Output**:
+- Parsed URLs are printed to console
+- Results saved to `url_list.py`
+- Extracts links matching `/laws-regs/regulations/standardnumber/` pattern
+
+#### paste_urls.py (manual / debugging)
+
+Useful for debugging `fetch_urls.py`'s extraction, or for pulling links from OSHA subpart pages that don't fetch cleanly (e.g. behind bot protection, or with a page structure `fetch_urls.py` doesn't recognize) — paste the HTML by hand instead.
 
 **Usage**:
 1. Copy the HTML list of regulation links from an OSHA page
@@ -314,7 +340,9 @@ python test_rag.py          # Validate with test queries
 ai-rag-pipeline/
 ├── README.md                    # This file
 ├── requirements.txt             # Python dependencies
-├── paste_urls.py               # Extract URLs from HTML
+├── fetch_urls.py                # Auto-fetch and extract URLs from an OSHA page
+├── paste_urls.py               # Extract URLs from pasted HTML (manual/debug)
+├── url_utils.py                 # Shared HTML-parsing/formatting helpers
 ├── url_list.py                 # Curated list of regulation URLs
 ├── scraper.py                  # Download and cache HTML
 ├── cleaner.py                 # Extract and normalize text
