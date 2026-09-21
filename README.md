@@ -1,11 +1,11 @@
 # AI RAG OSHA Demo - Apperdashery
 *Artificial Intelligence (AI) · Retrieval-Augmented Generation (RAG) · Occupational Safety and Health Administration (OSHA)*
 
-## From Workplace Challenge to AI Solution
+## Real-World Inspiration: Construction Safety
 
 A conversation with a construction foreman revealed a recurring challenge: workers on large, multi-contractor projects can struggle to recall PPE requirements, even after completing safety training. Mistakes can result in immediate disciplinary action, contributing to frustration and high employee turnover.
 
-This demo explores a practical solution: an AI-powered mobile assistant that brings relevant OSHA safety information closer to the worker, when and where they need it.
+This demo uses AI-powered mobile technology to give workers quick, accessible answers to safety questions, helping them make informed decisions and reducing avoidable workplace frustration.
 
 It showcases Apperdashery's approach to combining user-centered design, mobile app development, retrieval-augmented generation (RAG), and AI engineering to turn real-world problems into useful technology.
 
